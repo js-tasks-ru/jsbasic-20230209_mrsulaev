@@ -1,4 +1,3 @@
-let str = 'list-style-image';
 function camelize(str) {
   let arr = str.split('-');
   arr.map((item, index) => {
@@ -7,6 +6,3 @@ function camelize(str) {
   });
   return arr.join('');
 }
-
-let result = camelize(str);
-console.log(result);
