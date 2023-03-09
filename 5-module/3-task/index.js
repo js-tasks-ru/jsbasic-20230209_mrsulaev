@@ -1,4 +1,3 @@
-
 function initCarousel() {
   let currentPos = 0;
   let carousel = document.querySelector('.carousel');
@@ -36,7 +35,3 @@ function initCarousel() {
     elem.style.transform = `translateX(-${range}px)`;
   }
 }
-
-
-
-
