@@ -4,19 +4,18 @@ function initCarousel() {
   let inner = document.querySelector('.carousel__inner');
   let arrowRight = document.querySelector('.carousel__arrow_right');
   let arrowLeft = document.querySelector('.carousel__arrow_left');
-  let dist = document.querySelector('.carousel__inner');
   arrowLeft.style.display = 'none'; 
 
   carousel.addEventListener('click', (event) => {
     if (event.target.closest('.carousel__arrow_right')) {
       currentPos++;
-      move(inner, dist.clientWidth);
+      move(inner);
     }
     if (event.target.closest('.carousel__arrow_left')) {
       currentPos--;
-      move(inner, dist.clientWidth);
-
+      move(inner);
     }
+
     if (currentPos === 0) {
       arrowLeft.style.display = 'none';
     } else {
@@ -30,8 +29,7 @@ function initCarousel() {
     }
   });
 
-  function move(elem, range) {
-    range *= currentPos;
-    elem.style.transform = `translateX(-${range}px)`;
+  function move(elem) {
+    elem.style.transform = `translateX(-${currentPos * elem.clientWidth}px)`;
   }
 }
