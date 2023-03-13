@@ -25,7 +25,6 @@ export default class UserTable {
     for (let i = 0; i < this.users.length; i++) {
       this.tblBody.insertAdjacentHTML('beforeEnd', `<tr><td>${this.users[i].name}</td><td>${this.users[i].age}</td><td>${this.users[i].salary}</td><td>${this.users[i].city}</td><td><button>X</button></td></tr>`); 
     }
-    console.log(this.tblBody);
     this.table.append(this.tblBody);
     this.table.addEventListener('click', (event) => { 
       if (event.target.closest('button')) {
