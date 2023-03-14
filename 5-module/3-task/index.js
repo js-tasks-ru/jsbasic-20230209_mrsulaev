@@ -9,11 +9,11 @@ function initCarousel() {
   carousel.addEventListener('click', (event) => {
     if (event.target.closest('.carousel__arrow_right')) {
       currentPos++;
-      move(inner);
+      inner.style.transform = `translateX(-${currentPos * inner.clientWidth}px)`;
     }
     if (event.target.closest('.carousel__arrow_left')) {
       currentPos--;
-      move(inner);
+      inner.style.transform = `translateX(-${currentPos * inner.clientWidth}px)`;
     }
 
     if (currentPos === 0) {
@@ -28,8 +28,4 @@ function initCarousel() {
       arrowRight.style.display = '';
     }
   });
-
-  function move(elem) {
-    elem.style.transform = `translateX(-${currentPos * elem.clientWidth}px)`;
-  }
 }
