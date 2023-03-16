@@ -48,6 +48,7 @@ export default class Carousel {
         this.currentPos++;
         this.elem.querySelector('.carousel__inner').style.transform = `translateX(-${this.currentPos * this.elem.querySelector('.carousel__inner').clientWidth}px)`;
       }
+      
       if (event.target.closest('.carousel__arrow_left')) {
         this.currentPos--;
         this.elem.querySelector('.carousel__inner').style.transform = `translateX(-${this.currentPos * this.elem.querySelector('.carousel__inner').clientWidth}px)`;
