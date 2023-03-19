@@ -33,7 +33,6 @@ export default class Modal {
     document.body.classList.add('is-modal-open');
     this.modal.addEventListener('click', ({target}) => {
       if (target.closest('button')) {
-        this.modal.querySelector('.modal__body').classList.remove('is-modal-open');
         this.close();
       }
     });
