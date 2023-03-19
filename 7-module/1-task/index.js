@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 import createElement from '../../assets/lib/create-element.js';
 
 export default class RibbonMenu {
@@ -35,8 +34,8 @@ export default class RibbonMenu {
     </div>
      `);
 
-     this.nav.addEventListener('click', function(event) { 
-       event.preventDefault();
+    this.nav.addEventListener('click', function(event) { 
+      event.preventDefault();
       if (event.target.closest('.ribbon__item')) { 
         let customEvent = new CustomEvent("ribbon-select", { 
           detail: event.target.closest('.ribbon__item').dataset.id,
@@ -58,14 +57,14 @@ export default class RibbonMenu {
 
     this.elem.addEventListener('click', (event) => {
       if (event.target.closest('.ribbon__arrow_left')) {
-          this.scroll();
-          this.ribbonInner.scrollBy(-350, 0);
-       } else
+        this.scroll();
+        this.ribbonInner.scrollBy(-350, 0);
+      } else
       if (event.target.closest('.ribbon__arrow_right')) {
         this.scroll();
         this.ribbonInner.scrollBy(350, 0);
-    }
-  });
+      }
+    });
   }
 
   scroll() {
