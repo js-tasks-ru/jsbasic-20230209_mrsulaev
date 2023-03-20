@@ -6,6 +6,7 @@ export default class StepSlider {
     this.value = value;
     this.elem = this.render();
     this.addEventListener();
+    this.addCustomEvent();
   }
 
   render() {
@@ -49,6 +50,15 @@ export default class StepSlider {
       sliderValue.textContent = Math.round((event.clientX - this.elem.querySelector('.slider__steps').getBoundingClientRect().left) / sliderStepWidth);
       thumb.style.left = `${valuePercents}%`;
       progress.style.width = `${valuePercents}%`;
+      const custom = new CustomEvent('slider-change', {
+        detail: value,
+        bubbles: true
+      });
+      this.elem.dispatchEvent(custom);
     });
+  }
+
+  addCustomEvent() {
+   
   }
 }
