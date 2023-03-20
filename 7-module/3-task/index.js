@@ -6,7 +6,6 @@ export default class StepSlider {
     this.value = value;
     this.elem = this.render();
     this.addEventListener();
-    this.addCustomEvent();
   }
 
   render() {
@@ -27,11 +26,13 @@ export default class StepSlider {
     for (let i = 0; i < this.steps - 1; i++) {
       this.slider.querySelector(".slider__step-active").insertAdjacentElement('afterend', document.createElement('span'));
     }
+
     let thumb = this.slider.querySelector('.slider__thumb');
     let progress = this.slider.querySelector('.slider__progress');
     let defaultValue = (this.value / this.steps) * 100;
     thumb.style.left = `${defaultValue}%`;
     progress.style.width = `${defaultValue}%`;
+
     return this.slider;
   }
 
@@ -40,6 +41,7 @@ export default class StepSlider {
       let thumb = this.elem.querySelector('.slider__thumb');
       let progress = this.elem.querySelector('.slider__progress');
       let sliderValue = this.elem.querySelector('.slider__value');
+
       let left = event.clientX - this.elem.getBoundingClientRect().left;
       let leftRelative = left / this.elem.offsetWidth;
       let segments = this.steps - 1;
@@ -50,15 +52,12 @@ export default class StepSlider {
       sliderValue.textContent = Math.round((event.clientX - this.elem.querySelector('.slider__steps').getBoundingClientRect().left) / sliderStepWidth);
       thumb.style.left = `${valuePercents}%`;
       progress.style.width = `${valuePercents}%`;
+
       const custom = new CustomEvent('slider-change', {
         detail: value,
         bubbles: true
       });
       this.elem.dispatchEvent(custom);
     });
-  }
-
-  addCustomEvent() {
-   
   }
 }
