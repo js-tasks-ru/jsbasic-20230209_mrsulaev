@@ -41,12 +41,11 @@ export default class StepSlider {
   }
 
   addEventListenerDrag() {
-    let leftPercents;
     let value;
     this.thumb.ondragstart = () => false;
 
     this.thumb.addEventListener('pointerdown', (event) => {
-      const listener = (event) => {
+      const pointerDown = (event) => {
         this.elem.classList.add('slider_dragging');
 
         let left = event.clientX - this.elem.getBoundingClientRect().left;
@@ -61,7 +60,7 @@ export default class StepSlider {
           leftRelative = 1;
         }
 
-        leftPercents = leftRelative * 100;
+        let leftPercents = leftRelative * 100;
         let approximateValue = leftRelative * segments;
         value = Math.round(approximateValue);
         this.sliderValue.textContent = value;
@@ -71,14 +70,14 @@ export default class StepSlider {
         this.progress.style.width = `${leftPercents}%`;
       };
 
-      const listener2 = (event) => {
-        this.elem.removeEventListener('pointermove', listener);
-        this.elem.removeEventListener('pointerup', listener2);
+      const pointerUp = (event) => {
+        this.elem.removeEventListener('pointermove', pointerDown);
+        this.elem.removeEventListener('pointerup', pointerUp);
         this.addCustomEvent(value, this.thumb);
       };
 
-      this.elem.addEventListener('pointermove', listener);
-      this.elem.addEventListener('pointerup', listener2);
+      this.elem.addEventListener('pointermove', pointerDown);
+      this.elem.addEventListener('pointerup', pointerUp);
     });
   }
 
@@ -89,7 +88,7 @@ export default class StepSlider {
       let segments = this.steps - 1;
       let approximateValue = leftRelative * segments;
       let value = Math.round(approximateValue);
-      leftPercents = value / segments * 100;
+      let leftPercents = value / segments * 100;
       let sliderStepWidth = this.elem.querySelector('.slider__steps').offsetWidth / segments;
       this.sliderValue.textContent = Math.round((event.clientX - this.elem.querySelector('.slider__steps').getBoundingClientRect().left) / sliderStepWidth);
       this.thumb.style.left = `${leftPercents}%`;
